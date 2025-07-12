@@ -1,0 +1,67 @@
+   <div class="fullScreen ">
+    <div class="signup-container">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onsubmit()">
+
+            <div class="input-group">
+                <label for="userName">UserName</label>
+                <input
+               [class.error]="isInvalid('userName')"
+               [class.success]="isValid('userName')"
+                formControlName="userName"
+                type="text" id="userName"
+                name="userName"
+                placeholder="Please Enter Your UserName"
+                   required>
+            </div>
+            @if(userName.invalid && userName.touched){
+              @if(userName.errors?.['pattern']){
+              <small class="error-message ">Please Follow This Pattern above Two Character</small>
+              }
+            }
+            <div class="input-group password-toggle">
+                <label for="Password">
+                  password
+                </label>
+                <input
+                 formControlName="password"
+                  #passwordInput type="password"
+                   id="password"
+                    name="password"
+                    placeholder="Please Enter Your password"
+                      [class.error]="isInvalid('password')"
+                      [class.success]="isValid('password')"
+                     required>
+                <i
+               [class.fa-eye]="isEyeOpen()"
+                [class.fa-eye-slash]="!isEyeOpen()"
+                (click)="togglePasswordEye(passwordInput)"
+                class="fa-duotone fa-light fa-eye toggle-password"></i>
+
+              </div>
+
+            <button type="submit" [disabled]="loginForm.invalid">^login^</button>
+        </form>
+       <div class="text-end my-3">
+        <a  routerLink="/forgetPassword">Forget Password</a>
+       </div>
+        <div class="social-signup">
+           <a [routerLink]="['/signup']" class="social-button mb-3 justify-content-center">
+            Signup
+            </a>
+            <div class="social-buttons">
+                <a href="#" class="social-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Facebook_logo_%28square%29.png/640px-Facebook_logo_%28square%29.png" alt="Facebook">
+                    Facebook
+                </a>
+                <a href="#" class="social-button">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google">
+                    Google
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <button (click)="showSuccess()">asdasd</button> -->

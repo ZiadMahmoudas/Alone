@@ -1,0 +1,45 @@
+    <main class="py-5">
+        <div class="container">
+            <h1 class="text-center mb-5 display-4 fw-bold text-primary">
+          <i class="fas fa-heart text-danger me-3"></i>WishList <i class="fas fa-heart text-danger me-3"></i>
+            </h1>
+
+            <div id="wishlist-items" class="row row-cols-1 g-4">
+              @for (wishList of wishLists; track wishList) {
+                   @if(wishLists.length >0){
+                <div class="col wishlist-item-wrapper">
+                    <div class="card shadow-sm border-0 h-100 d-flex flex-row align-items-center p-3">
+                        <div class="item-image me-3">
+                            <img [src]="wishList.image" alt="اسم المنتج 1" class="img-fluid rounded">
+                        </div>
+                        <div class="item-details">
+                            <h2 class="item-name h5 mb-2 fw-bold">{{wishList.name}}</h2>
+                            <h3 class="item-name h5 mb-2 fw-bold">{{wishList.description}}</h3>
+                            <p class="item-price text-muted mb-2">{{wishList.price}}Eg</p>
+                            <del class="item-price text-muted mb-2">{{wishList.discount}}Eg</del>
+                            <p class="item-description text-dark small mb-0 d-none d-md-block">{{wishList.description}}</p>
+                        </div>
+                        <div class="item-actions">
+                            <button (click)="removeWishList(wishList.productId)" class="btn btn-outline-danger btn-sm delete-item-btn mb-2 w-100" data-product-id="1">
+                                <i class="fas fa-trash-alt me-1"></i> Remove WishList
+                            </button>
+                            <button class="btn btn-primary btn-sm add-to-cart-btn w-100" data-product-id="1">
+                                <i class="fas fa-shopping-cart me-1"></i>Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+              }
+              }
+              @empty {
+                <div class="d-flex justify-content-center align-items-center gap-4 flex-column">
+                <p class="text-center text-danger">This Not Found Item Please Go Back For Select fav items</p>
+                <button routerLink="/Home" class="btn btn-secondary">🫣Go Back Home🫣</button>
+                </div>
+              }
+
+
+            </div>
+        </div>
+    </main>
+

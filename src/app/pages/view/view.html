@@ -1,0 +1,60 @@
+@if(product){
+<div class="container my-5">
+  <div class="card product-detail-card shadow-lg border-0 rounded-lg">
+    <div class="row g-0">
+      <div class="col-md-5 col-lg-6 d-flex align-items-center justify-content-center p-3 p-md-4 bg-light rounded-start-lg">
+        <img [src]="product.image" class="img-fluid product-main-image rounded shadow-sm" alt="Product Name">
+      </div>
+
+      <div class="col-md-7 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center">
+        <h1 class="display-5 fw-bold text-dark mb-3">{{product.name}}</h1>
+        <p class="lead text-muted mb-4">
+         {{product.description}}
+        </p>
+
+        <div class="d-flex align-items-baseline mb-3">
+          <span class="product-price display-6 fw-bold text-primary me-2">{{product.price}} EGP</span>
+          <span class="text-decoration-line-through text-muted fs-5">{{product.discount}} EGP</span></div>
+
+        <div class="mb-4">
+          <label for="quantitySelect" class="form-label fw-bold text-dark">{{product.Quantity}}</label>
+          <select id="quantitySelect" class="form-select w-auto">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="d-grid gap-2">
+          <div class="d-flex gap-2">
+             @if(!roles()){
+          <button class="btn btn-success btn-lg custom-add-to-cart">
+            <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+          </button>
+        }@else {
+            <button (click)="edit(product.id)" class="btn btn-primary custom-add-to-cart">EditProduct</button>
+        }
+          @if(roles()){
+          <button (click)="deleteProduct(product.id)" class="btn btn-danger btn-lg custom-add-to-cart">
+             DeleteProduct
+          </button>
+        }@else {
+            <button class="btn btn-danger btn-lg custom-add-to-cart">
+            <i class="fa-solid fa-trash-clock"></i> Remove From Cart
+          </button>
+        }
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <small class="text-muted">
+         Category: Electronics | Availability:{{product.quantity}}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+}

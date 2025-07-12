@@ -1,0 +1,31 @@
+<div class="main-content">
+    <h1>Users</h1>
+    <div class="users-table-container">
+        <table class="users-table table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>UserName</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="users-table-body">
+                @for(user of users;track user){
+                    <tr>
+                        <td data-label="ID:">{{user.id}}</td>
+                        <td data-label="Email:">{{user.email}}</td>
+                        <td data-label="UserName:">{{user.userName}}</td>
+                        <td data-label="FirstName:">{{user.firstName}}</td>
+                        <td data-label="LastName:">{{user.lastName}}</td>
+                        <td class="d-flex gap-3">
+                            <button class="btn btn-danger btn-sm delete-btn" (click)="deleteUser(user.id)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
